@@ -10,7 +10,18 @@ class BusStop extends Model
 {
     use HasFactory, PostgisTrait;
 
-    protected $fillable = [
+    protected $postgisFields = [
+        'location'
+    ];
 
+    protected $postgisTypes = [
+        'location' => [
+            'geomtype' => 'geography',
+            'srid' => 4326
+        ]
+    ];
+
+    protected $fillable = [
+        'name', 'location', 'is_active'
     ];
 }
