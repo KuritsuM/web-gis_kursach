@@ -8,6 +8,7 @@ use App\Services\BusStopService\BusStopStoreService;
 use App\Services\BusStopService\Transformer\BusStopTransformer;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 
 class BusStopController
 {
@@ -28,7 +29,7 @@ class BusStopController
         BusStopCreationRequest $request,
         BusStopStoreService $busStopStoreService
     ): JsonResponse
-    {
+    {Log::debug('LAT -> ' . $request->getLatitude());
         $dto = $this->busStopTransformer->transformCreationRequest($request->validated());
         $busStopStoreService->store($dto);
 
